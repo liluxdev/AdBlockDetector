@@ -19,7 +19,7 @@ ____
   as it will log events google analytics and it's useful to
   gather info about the % of your traffic that uses AdBlock
   
-  NOTICE: FOR NOW IT WORKS ONLY WITH THE ADSENSE NEW CODE, the one with the <ins> html5 tag
+  NOTICE: FOR NOW IT WORKS ONLY WITH THE ADSENSE NEW CODE, the one with the ```<ins>``` html5 tag
   
   TIP: this script can be used also to passback to in-house Ads for who got adblock (need to customize behaivor)
   
