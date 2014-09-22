@@ -50,7 +50,7 @@ function detectAdBlock() {
         var hiddenCount = jQuery("ins").filter(":hidden").length;
         var visibleCount = jQuery("ins").filter(":visible").length;
         if (hiddenCount > visibleCount) {
-            if (window.logtoGA){
+            if (window.adBlockDetectorConfiguration.logtoGA){
               GAnaltyicsBridge.event("AdBlockDetector", "adblock-detection", "adblock-enabled");
             }
             if (window.adBlockDetectorConfiguration.showMessageOnDetection) {
