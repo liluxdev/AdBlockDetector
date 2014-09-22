@@ -13,6 +13,8 @@
  * 
  * NOTICE: IT WORKS ONLY WITH THE ADCODE NEW CODE, the one with the <ins> html5 tag
  * 
+ * TIP: this script can be used also to passback to in-house Ads for who got adblock (need to customize behaivor)
+ * 
  * 
  * Author: Stefano Gargiulo
  * License: MIT 
@@ -25,6 +27,7 @@
 window.adBlockDetectorConfiguration={
     detectEnabled: true,
     logtoGA: true,
+    logNegativesToo: true,
     showMessageOnDetection: false,
     messageForAdBlockers:
     //Customize your message here:
@@ -48,17 +51,17 @@ function detectAdBlock() {
         var visibleCount = jQuery("ins").filter(":visible").length;
         if (hiddenCount > visibleCount) {
             if (window.logtoGA){
-              GAnaltyicsBridge.event("AdBlockDetector", "adblock-detected", "has-adblock");
+              GAnaltyicsBridge.event("AdBlockDetector", "adblock-detection", "adblock-enabled");
             }
             if (window.adBlockDetectorConfiguration.showMessageOnDetection) {
                 var adblockMessage = adBlockDetectorConfiguration.messageForAdBlockers;
                 if (window.adBlockDetectorConfiguration.denyContentOnDetection) {
-                   if (window.logtoGA){
+                   if (window.adBlockDetectorConfiguration.logtoGA){
                       GAnaltyicsBridge.event("AdBlockDetector", "adblock-blocked", "blocked-completeley");
                    }
                   jQuery("body").html(adblockMessage);
                 } else {
-                    if (window.logtoGA){
+                    if (window.adBlockDetectorConfiguration.logtoGA){
                       GAnaltyicsBridge.event("AdBlockDetector", "adblock-blocked", "warning-only");
                     }
                     jQuery("body").prepend("<div onClick='jQuery(\".adBlockBlockedWarning\").hide();' class='adBlockBlockedWarning'" +
@@ -66,9 +69,13 @@ function detectAdBlock() {
                             "<i class='uk-icon-danger'></i>" + adblockMessage + "</div>");
                 }
             } else {
-                if (window.logtoGA){
+                if (window.adBlockDetectorConfiguration.logtoGA){
                   GAnaltyicsBridge.event("AdBlockDetector", "adblock-allowed", "allowed");
                 }
+            }
+        }else{
+            if (window.adBlockDetectorConfiguration.logtoGA && window.adBlockDetectorConfiguration.logNegativesToo){
+              GAnaltyicsBridge.event("AdBlockDetector", "adblock-detection", "not-enabed");
             }
         }
     }
