@@ -3,7 +3,7 @@ AdBlockDetector
 
 AdBlock detector: a script to detect, collect stats in Google Analytics and eventually show a message or deny content to the user who got AdBlock enabled 
 
-NOTICE: FOR NOW IT WORKS ONLY WITH THE ADSENSE NEW CODE, the one with the ‘<ins>‘ html5 tag
+NOTICE: FOR NOW IT WORKS ONLY WITH THE ADSENSE NEW CODE, the one with the ```<ins>``` html5 tag
 
 ____
  
